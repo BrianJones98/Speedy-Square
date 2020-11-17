@@ -25,11 +25,10 @@ while running:
         objSpeed = random.randint(10, 50)
         objType = random.randint(0, 2)
         objShape = random.randint(0, 1)
-        
+
         activeObstacles.append(Obstacle(objX, objY, objSpeed, objType, objShape))
 
     direction = pygame.key.get_pressed()
-
     square.move(direction)
 
     redrawGameWindow()

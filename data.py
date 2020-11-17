@@ -52,7 +52,7 @@ class Player:
 
         if self.cooldown != 0 and self.dashTime > 0:
             self.dashTime -= 1
-        if self.dashTime == 0 and self.cooldown != 0:
+        if self.dashTime == 0:
             self.speed = origSpeed
         if self.cooldown > 0:
             self.cooldown -= 1
