@@ -10,12 +10,11 @@ xInitial = screenSize[0]/4
 yInitial = screenSize[1]/2
 window = pygame.display.set_mode((screenSize[0], screenSize[1]))
 
-healthFont = pygame.font.SysFont('latin', 30, True)
+gameFont = pygame.font.SysFont('latin', 30, True)
+pauseFont = pygame.font.SysFont('impact', 100)
+timer = 0
 
 hitSound = pygame.mixer.Sound('hit.wav')
-backMusic = pygame.mixer.music.load('background.mp3')
-
-pygame.mixer.music.play(-1)
 
 #index corresponds with an obstacle type (0: damage, 1: slow, 2: no dash)
 colorList = [(255, 0, 0), (255, 0, 255), (255, 255, 255)]
@@ -66,7 +65,7 @@ class Player:
             self.dashTime = 5
             self.cooldown = 10
     
-    def hit(self, hitType):
+    def hit(self, hitType, timer):
         if self.invincible == False:
             if hitType == 0:
                 self.health -= 1
@@ -89,17 +88,26 @@ class Player:
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         pygame.quit()
-                
-                lossMessage = healthFont.render("You died. Press space to restart.", 1, (255, 255, 255))
-                window.fill((0, 0, 0))
-                window.blit(lossMessage, (screenSize[0]/3, screenSize[1]/2))
-                checkInput = pygame.key.get_pressed()
+                        sys.exit()
+
+                if timer < 60:
+                    lossMessage = gameFont.render("You died. Press space to restart.", 1, (255, 255, 255))
+                    window.fill((0, 0, 0))
+                    window.blit(lossMessage, (screenSize[0]/3, screenSize[1]/2))
+                    checkInput = pygame.key.get_pressed()
+                else:
+                    winMessage = gameFont.render("You win! Press space to play again!", 1, (0, 255, 0))
+                    window.fill((0, 0, 0))
+                    window.blit(winMessage, (screenSize[0]/3, screenSize[1]/2))
+                    checkInput = pygame.key.get_pressed()
 
                 if checkInput[pygame.K_SPACE]:
-                    levelReset()
+                    timer = levelReset()
                     freeze = False
                 
                 pygame.display.update()
+        
+        return timer
 
 class Obstacle:
     def __init__(self, x, y, speed, objType, height, width, direction):
@@ -118,10 +126,12 @@ class Obstacle:
 square = Player(xInitial, yInitial, squareColor)
 activeObstacles = []
 
-def redrawGameWindow():
+def redrawGameWindow(timeColor=(255,255,255), timer=0):
     window.fill((0, 0, 0))
-    healthDisplay = healthFont.render(f"Health: {square.health}", 1, (255, 255, 255))
+    healthDisplay = gameFont.render(f"Health: {square.health}", 1, (255, 255, 255))
+    timeDisplay = gameFont.render(f"Time: {timer}", 1, timeColor)
     window.blit(healthDisplay, (10, 10))
+    window.blit(timeDisplay, (screenSize[0] - 115, 10))
     square.draw(window)
     for obstacle in activeObstacles:
         obstacle.draw(window)
@@ -157,3 +167,4 @@ def levelReset():
     square.cooldown = 0
     square.dashTime = 0
     square.debuffTimer = 0
+    return 0
