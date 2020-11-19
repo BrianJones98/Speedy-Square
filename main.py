@@ -6,8 +6,6 @@ def draw_text(text, font, color, surface, x, y):
     textrect.topleft = (x, y)
 
 font = pygame.font.SysFont("comicsans", 70)
-# click = False
-font = pygame.font.SysFont("comicsans", 70)
 WIDTH = 1280
 HEIGHT = 780
 title_font = pygame.font.SysFont("comicsans", 100)
@@ -37,7 +35,7 @@ def main_menu():
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                level2()
+                level1()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
                     options()

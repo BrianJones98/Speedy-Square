@@ -89,21 +89,31 @@ class Player:
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         sys.exit()
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_SPACE:
+                            timer = levelReset()
+                            freeze = False
+                        if event.key == pygame.K_ESCAPE:
+                            return -100
 
                 if timer < 60:
-                    lossMessage = gameFont.render("You died. Press space to restart.", 1, (255, 255, 255))
+                    lossMessage = pauseFont.render("You Died", 1, (255, 0, 0))
+                    subMessage1 = gameFont.render("Press Space to play again", 1, (255, 255, 255))
+                    subMessage2 = gameFont.render("Press Escape to return to main menu", 1, (255, 255, 255))
                     window.fill((0, 0, 0))
-                    window.blit(lossMessage, (screenSize[0]/3, screenSize[1]/2))
+                    window.blit(lossMessage, (screenSize[0]/3, 100))
+                    window.blit(subMessage1, (screenSize[0]/3, screenSize[1]/2))
+                    window.blit(subMessage2, (screenSize[0]/3, screenSize[1]/2 + 50))
                     checkInput = pygame.key.get_pressed()
                 else:
-                    winMessage = gameFont.render("You win! Press space to play again!", 1, (0, 255, 0))
+                    winMessage = pauseFont.render("You Win!", 1, (0, 255, 0))
+                    subMessage1 = gameFont.render("Press Space to play again", 1, (255, 255, 255))
+                    subMessage2 = gameFont.render("Press Escape to return to main menu", 1, (255, 255, 255))
                     window.fill((0, 0, 0))
-                    window.blit(winMessage, (screenSize[0]/3, screenSize[1]/2))
+                    window.blit(winMessage, (screenSize[0]/3, 100))
+                    window.blit(subMessage1, (screenSize[0]/3, screenSize[1]/2))
+                    window.blit(subMessage2, (screenSize[0]/3, screenSize[1]/2 + 50))
                     checkInput = pygame.key.get_pressed()
-
-                if checkInput[pygame.K_SPACE]:
-                    timer = levelReset()
-                    freeze = False
                 
                 pygame.display.update()
         

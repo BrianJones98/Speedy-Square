@@ -8,6 +8,7 @@ def level1():
     loops = 0
     timer = 0
     pause = False
+    levelReset()
     
     running = True
     while running:
@@ -92,6 +93,11 @@ def level1():
 
         dropTimers()
         checkTimers()
+        if timer == -100:
+            pygame.mixer.music.stop()
+            music = pygame.mixer.music.load('./music/main_menu.mp3')
+            pygame.mixer.music.play(-1)
+            break
         
         loops += 1
         
@@ -112,6 +118,7 @@ def level2():
     loops = 0
     timer = 0
     pause = False
+    levelReset()
     
     running = True
     while running:
@@ -200,6 +207,12 @@ def level2():
 
         dropTimers()
         checkTimers()
+        if timer == -100:
+            pygame.mixer.music.stop()
+            music = pygame.mixer.music.load('./music/main_menu.mp3')
+            pygame.mixer.music.play(-1)
+            timer = 0
+            break
         
         loops += 1
         
@@ -220,6 +233,7 @@ def level3():
     loops = 0
     timer = 0
     pause = False
+    levelReset()
     
     running = True
     while running:
@@ -313,6 +327,12 @@ def level3():
 
         dropTimers()
         checkTimers()
+        if timer == -100:
+            pygame.mixer.music.stop()
+            music = pygame.mixer.music.load('./music/main_menu.mp3')
+            pygame.mixer.music.play(-1)
+            timer = 0
+            break
         
         loops += 1
         
@@ -333,6 +353,7 @@ def level4():
     loops = 0
     timer = 0
     pause = False
+    levelReset()
     
     running = True
     while running:
@@ -426,6 +447,12 @@ def level4():
 
         dropTimers()
         checkTimers()
+        if timer == -100:
+            pygame.mixer.music.stop()
+            music = pygame.mixer.music.load('./music/main_menu.mp3')
+            pygame.mixer.music.play(-1)
+            timer = 0
+            break
         
         loops += 1
         
