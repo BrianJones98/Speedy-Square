@@ -20,34 +20,7 @@ def level1():
                 sys.exit()
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_ESCAPE:
-                    pause = True
-        
-        while pause:
-            pygame.time.delay(60)
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            window.fill((0, 0, 0))
-            pauseDisplay = pauseFont.render("Game Paused", 1, (255, 0, 0))
-            pauseMessage1 = gameFont.render("Press Escape to unpause", 1, (255, 255, 255))
-            pauseMessage2 = gameFont.render("Press Enter to return to main menu", 1, (255, 255, 255))
-            window.blit(pauseDisplay, (screenSize[0]/4, 20))
-            window.blit(pauseMessage1, (screenSize[0]/4, screenSize[1]/2))
-            window.blit(pauseMessage2, (screenSize[0]/4, screenSize[1]/2 - 30))
-            
-            for event in pygame.event.get():
-                if event.type == pygame.KEYUP:
-                    if event.key == pygame.K_ESCAPE:
-                        pause = False
-                    if event.key == pygame.K_RETURN:
-                        pygame.mixer.music.stop()
-                        music = pygame.mixer.music.load('./music/main_menu.mp3')
-                        pygame.mixer.music.play(-1)
-                        levelReset()
-                        running = False
-                        pause = False
-            pygame.display.update()
-
+                    timer = pauseGame(timer)
 
         for obstacle in activeObstacles:
             sqEndX = square.x + square.size[0]
@@ -130,33 +103,8 @@ def level2():
                 sys.exit()
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_ESCAPE:
-                    pause = True
-        
-        while pause:
-            pygame.time.delay(60)
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            window.fill((0, 0, 0))
-            pauseDisplay = pauseFont.render("Game Paused", 1, (255, 0, 0))
-            pauseMessage1 = gameFont.render("Press Escape to unpause", 1, (255, 255, 255))
-            pauseMessage2 = gameFont.render("Press Enter to return to main menu", 1, (255, 255, 255))
-            window.blit(pauseDisplay, (screenSize[0]/4, 20))
-            window.blit(pauseMessage1, (screenSize[0]/4, screenSize[1]/2))
-            window.blit(pauseMessage2, (screenSize[0]/4, screenSize[1]/2 - 30))
-            
-            for event in pygame.event.get():
-                if event.type == pygame.KEYUP:
-                    if event.key == pygame.K_ESCAPE:
-                        pause = False
-                    if event.key == pygame.K_RETURN:
-                        pygame.mixer.music.stop()
-                        music = pygame.mixer.music.load('./music/main_menu.mp3')
-                        pygame.mixer.music.play(-1)
-                        levelReset()
-                        running = False
-                        pause = False
-            pygame.display.update()
+                    # pause = True
+                    timer = pauseGame(timer)
 
         for obstacle in activeObstacles:
             sqEndX = square.x + square.size[0]
@@ -245,33 +193,8 @@ def level3():
                 sys.exit()
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_ESCAPE:
-                    pause = True
-        
-        while pause:
-            pygame.time.delay(60)
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            window.fill((0, 0, 0))
-            pauseDisplay = pauseFont.render("Game Paused", 1, (255, 0, 0))
-            pauseMessage1 = gameFont.render("Press Escape to unpause", 1, (255, 255, 255))
-            pauseMessage2 = gameFont.render("Press Enter to return to main menu", 1, (255, 255, 255))
-            window.blit(pauseDisplay, (screenSize[0]/4, 20))
-            window.blit(pauseMessage1, (screenSize[0]/4, screenSize[1]/2))
-            window.blit(pauseMessage2, (screenSize[0]/4, screenSize[1]/2 - 30))
-            
-            for event in pygame.event.get():
-                if event.type == pygame.KEYUP:
-                    if event.key == pygame.K_ESCAPE:
-                        pause = False
-                    if event.key == pygame.K_RETURN:
-                        pygame.mixer.music.stop()
-                        music = pygame.mixer.music.load('./music/main_menu.mp3')
-                        pygame.mixer.music.play(-1)
-                        levelReset()
-                        running = False
-                        pause = False
-            pygame.display.update()
+                    # pause = True
+                    timer = pauseGame(timer)
 
         for obstacle in activeObstacles:
             sqEndX = square.x + square.size[0]
@@ -365,33 +288,7 @@ def level4():
                 sys.exit()
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_ESCAPE:
-                    pause = True
-        
-        while pause:
-            pygame.time.delay(60)
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            window.fill((0, 0, 0))
-            pauseDisplay = pauseFont.render("Game Paused", 1, (255, 0, 0))
-            pauseMessage1 = gameFont.render("Press Escape to unpause", 1, (255, 255, 255))
-            pauseMessage2 = gameFont.render("Press Enter to return to main menu", 1, (255, 255, 255))
-            window.blit(pauseDisplay, (screenSize[0]/4, 20))
-            window.blit(pauseMessage1, (screenSize[0]/4, screenSize[1]/2))
-            window.blit(pauseMessage2, (screenSize[0]/4, screenSize[1]/2 - 30))
-            
-            for event in pygame.event.get():
-                if event.type == pygame.KEYUP:
-                    if event.key == pygame.K_ESCAPE:
-                        pause = False
-                    if event.key == pygame.K_RETURN:
-                        pygame.mixer.music.stop()
-                        music = pygame.mixer.music.load('./music/main_menu.mp3')
-                        pygame.mixer.music.play(-1)
-                        levelReset()
-                        running = False
-                        pause = False
-            pygame.display.update()
+                    timer = pauseGame(timer)
 
         for obstacle in activeObstacles:
             sqEndX = square.x + square.size[0]
@@ -411,7 +308,19 @@ def level4():
                         obstacle.y += obstacle.speed
                     elif obstacle.direction == 2:
                         obstacle.x -= obstacle.speed
+                    elif obstacle.direction == 3:
+                        obstacle.y -= obstacle.speed
+                    elif obstacle.direction == 4:
+                        obstacle.x += obstacle.speed
+                        obstacle.y += obstacle.speed
+                    elif obstacle.direction == 5:
+                        obstacle.x -= obstacle.speed
+                        obstacle.y += obstacle.speed
+                    elif obstacle.direction == 6:
+                        obstacle.x -= obstacle.speed
+                        obstacle.y -= obstacle.speed
                     else:
+                        obstacle.x += obstacle.speed
                         obstacle.y -= obstacle.speed
                 else:
                     activeObstacles.pop(activeObstacles.index(obstacle))
@@ -420,7 +329,7 @@ def level4():
 
         if len(activeObstacles) < 15:
             # 0 right, 1 down, 2 left, 3 up
-            objDirection = random.randint(0, 3)
+            objDirection = random.randint(0, 7)
             if objDirection == 0:
                 objX = 0
                 objY = random.randint(0, screenSize[1])
@@ -430,14 +339,26 @@ def level4():
             elif objDirection == 2:
                 objX = screenSize[0]
                 objY = random.randint(0, screenSize[1])
-            else:
+            elif objDirection == 3:
                 objX = random.randint(0, screenSize[0])
+                objY = screenSize[1]
+            elif objDirection == 4:
+                objX = 0
+                objY = 0
+            elif objDirection == 5:
+                objX = screenSize[0]
+                objY = 0
+            elif objDirection == 6:
+                objX = screenSize[0]
+                objY = screenSize[1]
+            else:
+                objX = 0
                 objY = screenSize[1]
             
             objSpeed = random.randint(10, 100)
             objType = random.randint(0, 2)
-            objWidth = random.randint(10, 200)
-            objHeight = random.randint(10, 200)
+            objWidth = random.randint(10, 100)
+            objHeight = random.randint(10, 100)
 
             activeObstacles.append(Obstacle(objX, objY, objSpeed, objType, objWidth, objHeight, objDirection))
 
