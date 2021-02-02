@@ -12,6 +12,7 @@ def level1():
     
     running = True
     while running:
+        #pause for 60 milliseconds
         pygame.time.delay(60)
 
         for event in pygame.event.get():

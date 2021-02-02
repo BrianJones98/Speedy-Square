@@ -81,11 +81,17 @@ def main_menu():
 
 def options():
     running = True
+    selected_option = 0
+    
+    title = MenuItem(100, "Options", (255, 255, 255), None, title_font)
+    
     while running:
         pygame.time.delay(60)
         window.fill((0,0,0))
-        title_label = title_font.render("Options", 1, (255,255,255))
-        window.blit(title_label, (screenSize[0]/2 - title_label.get_width()/2, 50))
+        mx, my = pygame.mouse.get_pos()
+        
+        title.draw(window)
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
