@@ -22,7 +22,9 @@ Fast paced action game created with Python and Pygame.
 ## Controls
 
 WASD: Move
+<br/>
 Space: Invincible Dash
+<br/>
 ESC: Pause
 
 ## Requirements
