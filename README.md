@@ -19,20 +19,20 @@ Fast paced action game created with Python and Pygame.
 	</li>
 </ul>
 
-# Controls
+## Controls
 
 WASD: Move
 Space: Invincible Dash
 ESC: Pause
 
-#Requirements
+## Requirements
 
 <ul>
 	<li>Python</li>
 	<li>Pygame</li>
 </ul>
 
-#Running
+## Running
 
 To run the game, just install all the needed dependencies listed above and run the main.py file
 
